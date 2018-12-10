@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.vue matches snapshot 1`] = `
+<div class="data-table">
+  <div class="table-wrapper">
+    <div class="toolbar"><input type="text" placeholder="Type to search" class="search-box"></div>
+    <table class="table">
+      <tr>
+        <th>
+          <!---->
+          <!---->
+          ID
+        </th>
+        <th>
+          <!---->
+          <!---->
+          NAME
+        </th>
+        <th>
+          <!---->
+          <!---->
+          DESCRIPTION
+        </th>
+        <th>
+          <!---->
+          <!---->
+          DATE
+        </th>
+        <th>
+          <!---->
+          <!---->
+          AMOUNT
+        </th>
+      </tr>
+      <tr>
+        <td><span>C0DC95CC-E432-998F-05EB-8BC8D37F0FCF</span></td>
+        <td><span>Eve Bryan</span></td>
+        <td><span>id risus quis diam luctus lobortis. Class aptent taciti</span></td>
+        <td><span>2018-12-07T07:08:35-08:00</span></td>
+        <td><span>594.32</span></td>
+      </tr>
+      <tr>
+        <td><span>17019E51-E9B9-2E41-ECA4-3691F74BABA1</span></td>
+        <td><span>Denise Walsh</span></td>
+        <td><span>Mauris</span></td>
+        <td><span>2017-07-18T08:53:37-07:00</span></td>
+        <td><span>946.99</span></td>
+      </tr>
+    </table>
+    <div class="table-footer">
+      <div class="pagination">
+        <div><label>Rows per page:</label> <select class="pagination__options">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select></div>
+        <div class="pagination__controls"><span class="controls-icon disabled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="3.828 9 9.899 2.929 8.485 1.515 0 10 .707 10.707 8.485 18.485 9.899 17.071 3.828 11 20 11 20 9 3.828 9"></polygon></svg></span> <span class="controls-icon "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9"></polygon></svg></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

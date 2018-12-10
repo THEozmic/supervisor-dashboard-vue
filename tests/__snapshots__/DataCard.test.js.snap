@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataCard.vue matches snapshot 1`] = `
+<div class="card card--blue">
+  <div class="card__title">Test title</div>
+  <div class="card__content">Test content</div>
+</div>
+`;

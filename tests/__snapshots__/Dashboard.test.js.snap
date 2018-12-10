@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard.vue matches snapshot 1`] = `
+<div>
+  <div class="flex-container">
+    <datacard-stub title="Total Amount" content="0" color="blue"></datacard-stub>
+    <datacard-stub title="Total Items" content="0" color="green"></datacard-stub>
+    <datacard-stub title="Timeline" content=" – " color="red"></datacard-stub>
+  </div>
+  <datatable-stub items="" flags="[object Object]"></datatable-stub>
+</div>
+`;
