@@ -9,7 +9,7 @@
         >Delete Selected</button>
         <input class="search-box" type="text" v-model="searchTerm" placeholder="Type to search">
       </div>
-      <table class="table" v-if="items.length > 0">
+      <table class="table" v-if="tableData.length > 0">
         <tr>
           <th>
             <input
@@ -19,7 +19,7 @@
               @click="() => updateSelectedItems()"
             >
           </th>
-          <th @click="() => orderBy(key)" v-for="key in columns" v-bind:key="key">
+          <th @click="() => orderBy(key)" v-for="key in Object.keys(tableData[0])" v-bind:key="key">
             <span class="table__icon" v-if="currentOrder[key] === 'desc' ">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <polygon
@@ -115,11 +115,7 @@ import { debug } from "util";
 export default {
   name: "DataTable",
   props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    columns: {
+    tableData: {
       type: Array,
       required: true
     },
@@ -133,7 +129,7 @@ export default {
   },
   data() {
     return {
-      localItems: [...this.items],
+      localItems: [...this.tableData],
       currentOrder: {},
       searchTerm: "",
       currentPage: 1,
@@ -141,11 +137,12 @@ export default {
       canPaginateBack: false,
       rowsPerPage: 10,
       lastOrderKey: null,
-      selectedItems: []
+      selectedItems: [],
+      columns: []
     };
   },
   watch: {
-    items(val) {
+    tableData(val) {
       this.localItems = val;
       this.handlePaginate();
     },
@@ -177,7 +174,7 @@ export default {
       }
     },
     isLastPage() {
-      const pageNumbers = this.items.length / this.rowsPerPage;
+      const pageNumbers = this.tableData.length / this.rowsPerPage;
       if (pageNumbers === 0) return true;
       if (this.currentPage === pageNumbers) {
         return true;
@@ -202,7 +199,7 @@ export default {
       this.canPaginateBack = true;
 
       this.localItems = _.orderBy(
-        this.items,
+        this.tableData,
         this.lastOrderKey,
         this.currentOrder[this.lastOrderKey]
       ).slice(
@@ -235,7 +232,7 @@ export default {
         this.flipOrder(key);
       }
 
-      this.localItems = _.orderBy(this.items, key, this.currentOrder[key]);
+      this.localItems = _.orderBy(this.tableData, key, this.currentOrder[key]);
       this.handlePaginate();
     },
     hasPreviouslyOrderedWith(key) {

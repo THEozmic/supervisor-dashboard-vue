@@ -2,10 +2,10 @@
   <div>
     <div class="flex-container">
       <DataCard title="Total Amount" :content="totalAmount" color="blue"/>
-      <DataCard title="Total Items" :content="items.length.toString()" color="green"/>
+      <DataCard title="Total Items" :content="tableData.length.toString()" color="green"/>
       <DataCard title="Timeline" :content="`${earliestDate} – ${latestDate}`" color="red"/>
     </div>
-    <DataTable :columns="columns" :items="items" :options="options" :deleteHandler="deleteItem"/>
+    <DataTable :tableData="tableData" :options="options" :deleteHandler="deleteItem"/>
   </div>
 </template>
 
@@ -26,8 +26,7 @@ export default {
   },
   data() {
     return {
-      items: [],
-      columns: ["id", "name", "description", "date", "amount"],
+      tableData: [],
       itemsSortedByDate: [],
       options: {
         date: {
@@ -45,19 +44,21 @@ export default {
     };
   },
   mounted() {
-    this.items = data;
-    this.itemsSortedByDate = _.sortBy(this.items, "date", "asc");
+    this.tableData = data;
+    console.log(this.tableData, ">><<>>");
+    this.itemsSortedByDate = _.sortBy(this.tableData, "date", "asc");
+    console.log(this.itemsSortedByDate);
   },
   computed: {
     totalAmount() {
-      return this.items.reduce((a, b) => a + b.amount, 0).toString();
+      return this.tableData.reduce((a, b) => a + b.amount, 0).toString();
     },
     earliestDate() {
-      if (!this.items.length) return "";
+      if (!this.tableData.length) return "";
       return this.convertDate(this.itemsSortedByDate[0].date);
     },
     latestDate() {
-      if (!this.items.length) return "";
+      if (!this.tableData.length) return "";
 
       return this.convertDate(
         this.itemsSortedByDate[this.itemsSortedByDate.length - 1].date
@@ -69,7 +70,7 @@ export default {
       return moment(date).format(format);
     },
     deleteItem(value) {
-      this.items = this.items.filter(item => item !== value);
+      this.tableData = this.tableData.filter(item => item !== value);
     }
   }
 };
