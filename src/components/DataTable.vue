@@ -5,7 +5,7 @@
         <button
           class="delete-button delete-button--visible"
           v-if="selectedItems.length > 0"
-          @click="deleteSelectedItems"
+          @click="handleBulkDelete"
         >Delete Selected</button>
         <input class="search-box" type="text" v-model="searchTerm" placeholder="Type to search">
       </div>
@@ -122,7 +122,7 @@ export default {
     options: {
       type: Object
     },
-    deleteHandler: {
+    deleteItemCallback: {
       types: Function,
       required: true
     }
@@ -267,14 +267,21 @@ export default {
         });
       });
     },
-    deleteSelectedItems() {
-      this.selectedItems.map(indexItem => {
-        this.deleteHandler(this.localItems[indexItem]);
-      });
+    handleBulkDelete() {
+      // bulk delete from table
+      // call delete callback
+      
+      // this.selectedItems.map(indexItem => {
+      //   // this.deleteItemCallback(this.localItems[indexItem]);
+      // });
       this.selectedItems = [];
     },
     handleDelete(index) {
-      this.deleteHandler(this.localItems[index]);
+      this.tableData.splice(index, 1);
+
+      // delete from table
+      // call delete callback
+      // this.deleteItemCallback(this.localItems[index]);
     }
   }
 };

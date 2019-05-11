@@ -5,7 +5,7 @@
       <DataCard title="Total Items" :content="tableData.length.toString()" color="green"/>
       <DataCard title="Timeline" :content="`${earliestDate} – ${latestDate}`" color="red"/>
     </div>
-    <DataTable :tableData="tableData" :options="options" :deleteHandler="deleteItem"/>
+    <DataTable :tableData="tableData" :rowOptions="rowOptions"/>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
     return {
       tableData: [],
       itemsSortedByDate: [],
-      options: {
+      rowOptions: {
         date: {
           presenter: value => {
             return this.convertDate(value, "LLL");
@@ -45,9 +45,7 @@ export default {
   },
   mounted() {
     this.tableData = data;
-    console.log(this.tableData, ">><<>>");
     this.itemsSortedByDate = _.sortBy(this.tableData, "date", "asc");
-    console.log(this.itemsSortedByDate);
   },
   computed: {
     totalAmount() {
@@ -68,9 +66,6 @@ export default {
   methods: {
     convertDate(date, format = "Y") {
       return moment(date).format(format);
-    },
-    deleteItem(value) {
-      this.tableData = this.tableData.filter(item => item !== value);
     }
   }
 };
