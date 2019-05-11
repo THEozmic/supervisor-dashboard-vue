@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Dashboard from './components/Dashboard.vue'
 import moment from "moment";
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -9,5 +10,6 @@ Vue.filter('humanDate', function (value, format = 'Y') {
 })
 
 new Vue({
-  render: h => h(Dashboard),
+  store,
+  render: h => h(Dashboard)
 }).$mount('#app')
